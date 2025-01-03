@@ -37,7 +37,8 @@ export const metadata: Metadata = {
 
 // Fonction pour récupérer les données de l'souscription
 async function getSouscription(): Promise<SouscriptionData[]> {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages?per_page=30`;
+  //const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages?per_page=30`;
+  const apiUrl = "https://sgi.cynomedia-africa.com/wp-json/wp/v2/pages?per_page=30";
   const res = await fetch(apiUrl, {
     next: { revalidate: 60 },
   });

@@ -51,6 +51,7 @@ export const metadata: Metadata = {
 // Fonction pour récupérer l'URL de l'image par ID
 async function getImageUrlById(imageId: number): Promise<string> {
   const apiUrl = `https://sgi.cynomedia-africa.com/wp-json/wp/v2/media/${imageId}`;
+
   const res = await fetch(apiUrl);
 
   if (!res.ok) {
