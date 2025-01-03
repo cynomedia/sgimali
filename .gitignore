@@ -14,3 +14,4 @@ yarn-error.log
 # Ignore les fichiers de build
 .next/
 out/
+.vercel
