@@ -40,7 +40,8 @@ export const metadata: Metadata = {
 
 // Fonction pour récupérer les données de l'capaciteplacementitre
 async function getCapaciteplacementitre(): Promise<CapaciteplacementitreData[]> {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages?per_page=30`;
+  //const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/pages?per_page=30`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/wp-json/wp/v2/pages?per_page=30`;
 
 
 
