@@ -1,2 +1,2 @@
 # sgimali-frontend
-site web sgi-mali.com
+site web finalisé sgi-mali.com
