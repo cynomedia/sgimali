@@ -1,0 +1,116 @@
+"use client"
+import React, { useEffect, useState } from "react";
+
+
+// Type pour les données de l'offre d'emploi
+interface JobOffer {
+  id: number;
+  title: string;
+  code: string;
+  location: string;
+  department: string;
+  expireIn: string;
+  contractType: string;
+  experience: string;
+  skills: string;
+  mission: string;
+}
+
+const JobList: React.FC = () => {
+  const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
+  const [openDetails, setOpenDetails] = useState<number | null>(null); // État pour savoir quelle ligne est ouverte
+
+  useEffect(() => {
+    // Récupérer les offres d'emploi depuis l'API
+    const fetchJobOffers = async () => {
+      try {
+        const response = await fetch("https://sgi.cynomedia-africa.com/wp-json/wp/v2/job_offers");
+        const data = await response.json();
+
+        // Mapper la réponse de l'API pour correspondre au format nécessaire
+        const formattedJobOffers = data.map((job: any) => ({
+          id: job.id,
+          title: job.title.rendered,
+          code: job.acf.code,
+          location: job.acf.localisation,
+          department: job.acf.departement,
+          expireIn: job.acf.date_dexpiration,
+          contractType: job.acf.type_de_contrat,
+          experience: `${job.acf.experience_requise} ans`,
+          skills: job.acf.competences,
+          mission: job.acf.missions,
+        }));
+
+        setJobOffers(formattedJobOffers);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des offres d'emploi :", error);
+      }
+    };
+
+    fetchJobOffers();
+  }, []);
+
+  // Fonction pour basculer l'affichage des détails
+  const toggleDetails = (id: number) => {
+    setOpenDetails(openDetails === id ? null : id); // Si l'élément est déjà ouvert, on le ferme, sinon on l'ouvre
+  };
+
+  return (
+    <>
+      <section style={{ padding: "39px 0" }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="list-job-warp">
+                <div className="table-warp">
+                  <div className="table-responsive">
+                    <table className="table table-hover table-reset">
+                      <thead>
+                        <tr>
+                          <th>Code</th>
+                          <th>Intitulé du poste</th>
+                          <th>Localisation</th>
+                          <th>Département</th>
+                          <th>Expire dans...</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {jobOffers.length === 0 ? (
+                          <tr>
+                            <td colSpan={5}>Aucune offre d'emploi disponible.</td>
+                          </tr>
+                        ) : (
+                          jobOffers.map((job) => (
+                            <React.Fragment key={job.id}>
+                              <tr className="clickable-row" onClick={() => toggleDetails(job.id)}>
+                                <td>{job.code}</td>
+                                <td>{job.title}</td>
+                                <td>{job.location}</td>
+                                <td>{job.department}</td>
+                                <td>{job.expireIn}</td>
+                              </tr>
+                              {/* Affichage des détails si cette ligne est ouverte */}
+                              {openDetails === job.id && (
+                                <tr className="details-row">
+                                  <td colSpan={5}>
+                                    <JobDetails job={job} />
+                                  </td>
+                                </tr>
+                              )}
+                            </React.Fragment>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default JobList;

@@ -1,0 +1,64 @@
+/* Applique l'animation shimmer à l'image et aux textes */
+.skeleton-image,
+.skeleton-text {
+  background-color: #ccc;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+}
+
+.skeleton-text {
+  height: 20px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+/* Animation shimmer plus forte */
+@keyframes shimmer {
+  0% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 300px 0;
+  }
+}
+
+/* Appliquer l'animation shimmer avec un dégradé plus intense */
+.skeleton-image,
+.skeleton-text {
+  background: linear-gradient(90deg, #f0f0f0 20%, #e0e0e0 50%, #f0f0f0 80%);
+  background-size: 300% 100%; /* Plus grand pour un mouvement plus large */
+  animation: shimmer 1s infinite linear; /* Animation plus rapide */
+}
+
+/* Personnaliser l'animation pour chaque élément */
+.skeleton-title {
+  width: 80%;
+  height: 20px;
+}
+
+.skeleton-date {
+  width: 60%;
+  height: 15px;
+}
+
+.skeleton-category {
+  width: 50%;
+  height: 15px;
+}
+
+/* Responsive: Assurez-vous que les éléments sont adaptés pour les petits écrans */
+@media (max-width: 767px) {
+  .skeleton-image {
+    height: 150px;
+  }
+
+  .skeleton-text {
+    width: 90%;
+  }
+}

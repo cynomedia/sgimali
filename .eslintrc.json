@@ -1,0 +1,9 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "no-console": "off",      // Désactiver les avertissements concernant les consoles
+    "react/react-in-jsx-scope": "off", // Désactiver l'avertissement de React dans Next.js (pour React 17 et +)
+    "no-unused-vars": "off",  // Désactiver les avertissements sur les variables non utilisées
+    "react/prop-types": "off" // Désactiver l'avertissement sur les prop-types
+  }
+}

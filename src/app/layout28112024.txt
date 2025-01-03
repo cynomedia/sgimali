@@ -1,0 +1,178 @@
+"use client";
+import "@fortawesome/fontawesome-free/css/all.min.css"; // Import Font Awesome
+import { useEffect } from "react"; // Importer Suspense pour gérer le chargement
+import "./globals.css";
+import { useState } from "react";
+import AnimationPage from "@/components/AnimationPage";
+import $ from "jquery"; // Importer jQuery directement
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.$ = window.jQuery = $; // Assigner jQuery à window
+    }
+  }, []);
+
+
+  
+
+
+  
+  useEffect(() => {
+
+      // Charger jQuery (si nécessaire)
+      //loadScript("/js/vendor/jquery.min.js");
+
+    // Charger dynamiquement les scripts JavaScript
+    //loadScript("/js/vendor/bootstrap.js"); // Exemple pour Bootstrap
+    //loadScript("/js/owl.carousel.min.js"); // Exemple pour Owl Carousel
+    //loadScript("/js/plugins/owl.carousel."); // Exemple pour Owl Carousel
+    //loadScript("/revolution/js/jquery.themepunch.revolution.min.js");
+  }, []);
+
+  const [showAnimation, setShowAnimation] = useState(true);
+
+  const handleAnimationComplete = () => {
+    setShowAnimation(false); // Cacher l'animation après 1 minute
+  };
+
+  return (
+    <html lang="fr">
+      <head>
+        <link rel="stylesheet" href="/css/bootstrap.css" />
+        {/* Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&subset=devanagari,latin-ext"
+          rel="stylesheet"
+        />
+
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/uicons-thin-straight/css/uicons-thin-straight.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"
+          integrity="sha512-6f7HT84a/AplPkpSRSKWqbseRTG4aRrhadjZezYQ0oVk/B+nm/US5KzQkyyOyh0Mn9cyDdChRdS9qaxJRHayww=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        {/*link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css"*/}
+        <link rel="stylesheet" href="/fonts/IcoMoon/icomoon.css" />
+        <link rel="stylesheet" href="/fonts/linearicon/style.css" />
+        {/* Mobile Menu */}
+
+        <link
+          type="text/css"
+          rel="stylesheet"
+          href="/css/jquery.mmenu.all.css"
+        />
+
+        {/* Magnific Popup core CSS file */}
+        <link rel="stylesheet" href="/css/magnific-popup.css" />
+        {/* OWL CAROUSEL
+		================================================== */}
+        <link rel="stylesheet" href="/css/owl.carousel.css" />
+        {/* SELECTBOX
+		================================================== */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="/css/fancySelect.css"
+          media="screen"
+        />
+        {/* REVOLUTION STYLE SHEETS */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="/revolution/css/settings.css"
+        />
+
+        {/* REVOLUTION LAYERS STYLES */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="/revolution/css/layers.css"
+        />
+        {/* REVOLUTION NAVIGATION STYLES */}
+
+        {/*
+              <link
+                rel="stylesheet"
+                type="text/css"
+                href="/revolution/css/navigation.css"
+              />
+          */}
+
+        {/* Main Style */}
+        {/*
+          <link rel="stylesheet" href="/style.css" />
+          */}
+        {/* color scheme */}
+        <link rel="stylesheet" href="/switcher/demo.css" type="text/css" />
+
+        {/*
+          <link
+            rel="stylesheet"
+            href="/switcher/colors/#"
+            type="text/css"
+            id="colors"
+          />
+          */}
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Slab:wght@100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=optional"
+          rel="stylesheet"
+        />
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html:
+              '\n\t\t* {\n\t\t\tfont-family: "Roboto Slab", serif;\n\t\t\tfont-weight: 300;\n\t\t\tfont-style: normal;\n\t\t}\n\t',
+          }}
+        />
+
+        <link rel="shortcut icon" href="/images/favicon.png" />
+      </head>
+
+      <body>
+        {showAnimation ? (
+          <AnimationPage onComplete={handleAnimationComplete} />
+        ) : (
+          <>
+            <div id="page">{children}</div>
+
+
+          </>
+        )}
+        
+      </body>
+    </html>
+  );
+}

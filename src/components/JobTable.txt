@@ -1,0 +1,233 @@
+// components/JobTable.tsx
+"use client";
+import React, { useEffect, useState } from "react";
+
+type Job = {
+  code: string;
+  title: string;
+  location: string;
+  department: string;
+  expireIn: string;
+  contractType: string;
+  experience: string;
+  skills: string;
+  mission: string;
+};
+
+interface JobTableProps {
+  jobOffers: Job[];
+}
+
+
+
+const JobTable: React.FC<JobTableProps> = ({ jobOffers }) => {
+
+const [jobs, setJobs] = useState<Job[]>([]);
+const [isBrowser, setIsBrowser] = useState(false);
+const [loading, setLoading] = useState(true); // État de chargement
+
+
+
+  // Récupérer les données de l'API
+  const fetchJobs = async () => {
+    try {
+      
+      const apiUrl = `https://sgi.cynomedia-africa.com/wp-json/wp/v2/job_offers`;
+      //const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/slides`;
+      
+      // Construire l'URL complète pour les slides
+      const res = await fetch(apiUrl, {
+        next: { revalidate: 60 },
+      }        
+      ); // Requête vers l'API distante
+  
+      if (!res.ok) {
+        throw new Error(`Failed to fetch slides, status: ${res.status}`);
+      }
+  
+      const data = await res.json();
+      setJobs(data); // Mettre à jour l'état avec les données récupérées
+      setLoading(false); // Fin du chargement
+    } catch (error) {
+      console.error("Error fetching slides:", error); // Gérer les erreurs de requête
+    }
+  };
+   
+
+  useEffect(() => {
+    setIsBrowser(true);
+    fetchJobs();
+  }, []);
+
+
+  return (
+    <div className="list-job-warp">
+      <div className="table-warp">
+        <div className="table-responsive">
+          <table className="table table-hover table-reset">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Intitulé du poste</th>
+                <th>Localisation</th>
+                <th>Département</th>
+                <th>Expire dans...</th>
+              </tr>
+            </thead>
+            <tbody>
+                        {jobOffers.map((job) => (
+                          <React.Fragment key={job.code}>
+                            <tr className="clickable-row">
+                              <td>{job.code}</td>
+                              <td>{job.title}</td>
+                              <td>{job.location}</td>
+                              <td>{job.department}</td>
+                              <td>{job.expireIn}</td>
+                            </tr>
+                            <tr className="details-row">
+                              <td colSpan={5}>
+                                <div className="job-details row">
+                                  {/* Colonne 1 : Détails de l'offre */}
+                                  <div className="col-md-6">
+                                    <div className="apply-form">
+                                      <h5>Détails de l&apos;offre</h5>
+                                      <form>
+                                        <div className="job-detail-section">
+                                          <div className="detail-card">
+                                            <p className="job-detail-title">
+                                              Type de contrat:
+                                            </p>
+                                            <p className="job-detail-description">
+                                              {job.contractType}
+                                            </p>
+                                          </div>
+                                          <div className="detail-card">
+                                            <p className="job-detail-title">
+                                              Expérience requise:
+                                            </p>
+                                            <p className="job-detail-description">
+                                              {job.experience}
+                                            </p>
+                                          </div>
+                                          <div className="detail-card">
+                                            <p className="job-detail-title">
+                                              Compétences:
+                                            </p>
+                                            <p className="job-detail-description">
+                                              {job.skills}
+                                            </p>
+                                          </div>
+                                          <div className="detail-card">
+                                            <p className="job-detail-title">
+                                              Mission:
+                                            </p>
+                                            <p className="job-detail-description">
+                                              {job.mission}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+
+                                  {/* Colonne 2 : Formulaire de candidature */}
+                                  <div className="col-md-6">
+                                    <div className="apply-form">
+                                      <h5>Formulaire de candidature</h5>
+                                      <form>
+                                        {/* Sélection de l'offre */}
+                                        <div className="form-group">
+                                          <label htmlFor="jobCode">
+                                            Code de l&apos;offre
+                                          </label>
+                                          <select
+                                            className="form-control"
+                                            id="jobCode"
+                                            required
+                                          >
+                                            {jobOffers.map((offer) => (
+                                              <option key={offer.code} value={offer.code}>
+                                                {offer.code} - {offer.title}
+                                              </option>
+                                            ))}
+                                          </select>
+                                        </div>
+
+                                        {/* Nom et prénoms */}
+                                        <div className="form-group">
+                                          <label htmlFor="firstName">
+                                            Nom et prénoms
+                                          </label>
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            id="firstName"
+                                            placeholder="Votre nom"
+                                            required
+                                          />
+                                        </div>
+
+                                        {/* Téléphone */}
+                                        <div className="form-group">
+                                          <label htmlFor="phone">
+                                            Votre téléphone
+                                          </label>
+                                          <input
+                                            type="tel"
+                                            className="form-control"
+                                            id="phone"
+                                            placeholder="Votre téléphone"
+                                            required
+                                          />
+                                        </div>
+
+                                        {/* Email */}
+                                        <div className="form-group">
+                                          <label htmlFor="email">Email</label>
+                                          <input
+                                            type="email"
+                                            className="form-control"
+                                            id="email"
+                                            placeholder="Votre email"
+                                            required
+                                          />
+                                        </div>
+
+                                        {/* CV */}
+                                        <div className="form-group">
+                                          <label htmlFor="cv">Votre CV</label>
+                                          <input
+                                            type="file"
+                                            className="form-control-file"
+                                            id="cv"
+                                            required
+                                          />
+                                        </div>
+
+                                        {/* Bouton de soumission */}
+                                        <div className="form-submit col-md-3">
+                                          <button
+                                            type="submit"
+                                            className="btn_valider"
+                                          >
+                                            Postuler
+                                          </button>
+                                        </div>
+                                        <br/><br/><br/><br/>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </React.Fragment>
+                        ))}
+                      </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JobTable;

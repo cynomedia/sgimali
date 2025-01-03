@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.1",
+    "@nextui-org/react": "^2.6.8",
+    "@primer/react": "^37.8.0",
+    "@types/swiper": "^6.0.0",
+    "animate.css": "^4.1.1",
+    "bootstrap": "^3.3.6",
+    "date-fns": "^4.1.0",
+    "emailjs-com": "^3.2.0",
+    "form-data": "^4.0.1",
+    "framer-motion": "^11.15.0",
+    "http-proxy-middleware": "^3.0.3",
+    "jquery": "^3.7.1",
+    "next": "15.0.3",
+    "owl.carousel": "^2.3.4",
+    "react": "^18.2.0",
+    "react-awesome-slider": "^4.1.0",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6",
+    "react-loading-skeleton": "^3.5.0",
+    "react-owl-carousel": "^2.3.3",
+    "react-phone-number-input": "^3.4.10",
+    "styled-components": "^5.3.11",
+    "sweetalert2": "^11.14.5"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,40 @@
+/* WaveLoader.css */
+.wave-loader {
+    display: flex;
+    justify-content: left !important;
+    align-items: left !important;
+  }
+  
+  .wave2 {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #01a0e3 !important;
+    border-radius: 50%;
+    animation: wave 0.8s infinite ease-in-out; /* Vitesse d'animation augmentée */
+  }
+  
+  .wave2:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .wave2:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .wave2:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

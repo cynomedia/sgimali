@@ -1,0 +1,110 @@
+/* Importation de Bootstrap dans un fichier CSS global */
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+/* globals.css */
+
+
+/* Importer Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+/* Importer Flat UI */
+/*@import url('https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css');
+
+
+/* Initial styles for topbar */
+.topbar {
+    transition: top 0.3s ease-in-out;
+  }
+  
+  /* Style for navigation when scrolling */
+  .nav-warp-h2 {}
+  
+  /* Effect to hide the topbar on scroll */
+  .scrolled .topbar {
+    display: none;
+  }
+  
+  /* When scroll happens */
+  body.scrolled .nav-warp-h2 {
+    background-color: #fff;
+    /* Make background white when fixed */
+  }
+  
+  /* Mobile menu button for smaller screens */
+  @media (max-width: 767px) {
+    .nav-warp-h2 {
+      position: relative;
+    }
+  }
+  
+  .navi-warp-home-2 .navi-level-1>li>a {
+    font-weight: 600;
+  }
+  
+
+
+  .news-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.news-card:hover {
+    /*transform: translateY(-5px);*/
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.news-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #00a0e2;
+    color: #fff;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    font-weight: 600;
+}
+
+.news-image {
+    width: 100%;
+    height: auto;
+    /*200px*/
+    object-fit: cover;
+}
+
+.news-title {
+    font-size: 16px;
+    color: #082782;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.news-title:hover {
+    color: #00a0e2;
+}
+
+.news-date {
+    font-size: 14px;
+    color: #919394;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #01a0e3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #008bc2;
+}
+
+
+
+
