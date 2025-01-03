@@ -77,7 +77,7 @@ const JobApplicationForm: React.FC<{ jobOffers: JobOffer[] }> = ({ jobOffers }) 
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        console.error("Erreur API:", errorResponse);
+        console.log("Erreur API:", errorResponse);
         throw new Error("Erreur lors de l'envoi de la candidature");
       }
 
@@ -95,7 +95,7 @@ const JobApplicationForm: React.FC<{ jobOffers: JobOffer[] }> = ({ jobOffers }) 
         cv: null,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Erreur",

@@ -44,9 +44,9 @@ const Topbar = () => {
       const data = await res.json();
       setTopbarData(data); // Mettre à jour l'état avec les données récupérées
       setLoading(false); // Fin du chargement
-      console.log(topbardata);
+      //console.log(topbardata);
     } catch (error) {
-      console.error("Error fetching top bar:", error); // Gérer les erreurs de requête
+      console.log("Error fetching top bar:", error); // Gérer les erreurs de requête
     }
   };
 

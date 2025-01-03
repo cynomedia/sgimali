@@ -56,13 +56,13 @@ const NoServices = () => {
       setLoading(false); // Fin du chargement
       //console.log(blocserviceData);
       //console.log(serviceData[0].bloc_services);
-      console.log("serviceData[0].bloc_services.image");
+      //console.log("serviceData[0].bloc_services.image");
       //console.log(data[0].bloc_services.services);
       //console.log("serviceData[0].bloc_services.services");
       //console.log(serviceData[0].bloc_services.services);
       //
     } catch (error) {
-      console.error(error); // Ou un log utile
+      console.log(error); // Ou un log utile
     }
   };
 

@@ -52,7 +52,7 @@ function transformImageUrl(imageUrl: string): string {
       //console.log(data);
       setLoading(false); // Fin du chargement
     } catch (error) {
-      console.error("Error fetching clients:", error);
+      console.log("Error fetching clients:", error);
     }
   };
 

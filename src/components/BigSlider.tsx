@@ -67,7 +67,7 @@ function transformImageUrl(imageUrl: string): string {
       setSlides(data); // Mettre à jour l'état avec les données récupérées
       setLoading(false); // Fin du chargement
     } catch (error) {
-      console.error("Error fetching slides:", error); // Gérer les erreurs de requête
+      console.log("Error fetching slides:", error); // Gérer les erreurs de requête
     }
   };
    

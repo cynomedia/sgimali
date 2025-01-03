@@ -81,8 +81,8 @@ function transformImageUrl(imageUrl: string): string {
 export default async function NosActualites() {
   const posts = await getLastPosts();
 
-  console.log("posts");
-  console.log(posts);
+  //console.log("posts");
+  //console.log(posts);
 
   // Données dynamiques pour la section "Notre actualité"
   const contentData = {

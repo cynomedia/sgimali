@@ -93,11 +93,11 @@ export async function generateMetadata({
     ? transformImageUrl(imageUrl)
     : "URL_DE_DEFAULT_IMAGE"; // Remplacez par l'URL d'une image par défaut si nécessaire
 
-  console.log("post.featured_image_url");
-  console.log(post.featured_image_url);
+  //console.log("post.featured_image_url");
+  //console.log(post.featured_image_url);
 
-  console.log("transformedImageUrl");
-  console.log(transformedImageUrl);
+  //console.log("transformedImageUrl");
+  //console.log(transformedImageUrl);
 
   // Retourner les métadonnées de l'article avec les balises Open Graph et Twitter
   return {

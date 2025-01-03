@@ -84,12 +84,12 @@ const fetchCategories = async () => {
       if (total) {
         const totalPagesCalculated = Math.ceil(Number(total) / 6);  // Calcul du nombre de pages
         setTotalPages(totalPagesCalculated);
-        console.log('Total Pages:', totalPagesCalculated); // Affichage du total de pages calculé
+        //console.log('Total Pages:', totalPagesCalculated); // Affichage du total de pages calculé
       } else {
         setTotalPages(1); // Par défaut, si le total n'est pas retourné
       }
     } catch (error) {
-      console.error("Erreur:", error);
+      console.log("Erreur:", error);
       setArticles([]); // Vider les articles en cas d'erreur
       setTotalPages(1); // Par défaut, une seule page en cas d'erreur
     }

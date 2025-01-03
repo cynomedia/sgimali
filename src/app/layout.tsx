@@ -28,12 +28,7 @@ export default function RootLayout({
   const [blocfooterData, setBlocfooterData] = useState<BlocFooter[]>([]); // Stocke les items
   const [loading, setLoading] = useState<boolean>(true); // Indique si les données sont en cours de chargement
 
-  const [username, setUsername] = useState(""); // État pour le nom d'utilisateur
-  const [password, setPassword] = useState(""); // État pour le mot de passe
-  const [error, setError] = useState(""); // État pour l'erreur
-
-
-
+  
 
   const [marginTop, setMarginTop] = useState(80);
 
@@ -60,10 +55,10 @@ export default function RootLayout({
       const data = await res.json();
       setScrollData(data); // Mettre à jour l'état avec les données récupérées
       setLoading(false); // Fin du chargement
-      console.log("scrolldata");
-      console.log(scrolldata);
+      //console.log("scrolldata");
+      //console.log(scrolldata);
     } catch (error) {
-      console.error("Error fetching top bar:", error); // Gérer les erreurs de requête
+      console.log("Error fetching top bar:", error); // Gérer les erreurs de requête
     }
   };
 
@@ -141,8 +136,8 @@ export default function RootLayout({
       const data = await res.json();
       setBlocfooterData(data); // Mettre à jour l'état avec les données récupérées
       setLoading(false); // Fin du chargement
-      console.log("blocfooterData[0].bloc_footer");
-      console.log(blocfooterData);
+      //console.log("blocfooterData[0].bloc_footer");
+      //console.log(blocfooterData);
       //console.log(blocfooterData[0].bloc_footer.liens_utiles.elements);
       //console.log(serviceData[0].bloc_services);
       //console.log("serviceData[0].bloc_services.services");
@@ -150,7 +145,7 @@ export default function RootLayout({
       //console.log(blocfooterData[0].bloc_header.reseaux_sociaux);
       //
     } catch (error) {
-      console.error(error); // Ou un log utile
+      console.log(error); // Ou un log utile
     }
   };
 
@@ -341,203 +336,6 @@ export default function RootLayout({
   }
 
 
-  
-  const validUsername = "admin"; // Identifiant valide
-  const validPassword = "password123"; // Mot de passe valide
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    // Vérification des identifiants
-    if (username === validUsername && password === validPassword) {
-      localStorage.setItem('authenticated', 'true');
-      window.location.href = '/'; // Redirection vers la page d'accueil
-    } else {
-      setError('Nom d\'utilisateur ou mot de passe incorrect');
-    }
-  };
-  
-  
-
-  
-  if (pathname === "/auth") {
-    return (
-      <html lang="fr">
-      <head>
-        {/* Inclure Bootstrap et Font Awesome */}
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <style>
-          {`
-            /* Animation du brouillard */
-            @keyframes fog {
-              0% {
-                transform: translateX(-100%) scale(1);
-              }
-              50% {
-                transform: translateX(0%) scale(1.1);
-              }
-              100% {
-                transform: translateX(100%) scale(1);
-              }
-            }
-
-            .fog-layer {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 200%;
-              height: 100%;
-              background: url('/fog.png') repeat-x;
-              opacity: 0.6;
-              animation: fog 20s linear infinite;
-            }
-
-            .fog-container {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              overflow: hidden;
-              z-index: -1; /* Derrière le contenu */
-              background: linear-gradient(180deg, #1b2735 0%, #090a0f 100%);
-            }
-
-            .auth-wrapper {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              height: 100vh;
-              padding: 20px;
-              color: #ffffff;
-              text-align: center;
-            }
-
-            .auth-wrapper h1 {
-              font-size: 3rem;
-              font-weight: bold;
-              margin-bottom: 20px;
-            }
-
-            .auth-wrapper p {
-              font-size: 1.2rem;
-              margin-bottom: 10px;
-            }
-
-            /* Animation de l'icône de rouage (cog) */
-            @keyframes rotate {
-              0% {
-                transform: rotate(0deg);
-              }
-              100% {
-                transform: rotate(360deg);
-              }
-            }
-
-            .rotate-icon {
-              font-size: 4rem;
-              animation: rotate 2s linear infinite;
-              margin-bottom: 20px;
-              color: #ffffff;
-            }
-
-            /* Animation de la date */
-            @keyframes blinkZoom {
-              0% {
-                opacity: 1;
-                transform: scale(1);
-                color: #00a0e2; /* Rouge #ff0000*/
-              }
-              50% {
-                opacity: 0.5;
-                transform: scale(1.2);
-                color: #ff0000; /* Rouge */
-              }
-              100% {
-                opacity: 1;
-                transform: scale(1);
-                color: #00a0e2; /* Rouge */
-              }
-            }
-
-            .date {
-              font-size: 2rem;
-              font-weight: bold;
-              animation: blinkZoom 1.5s ease-in-out infinite;
-            }
-          `}
-        </style>
-      </head>
-      <body>
-          <div className="fog-container">
-            {/* Fond animé avec plusieurs couches */}
-            <div className="fog-layer"></div>
-            <div className="fog-layer" style={{ animationDelay: '5s' }}></div>
-          </div>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-12">
-                <div className="auth-wrapper">
-                  {/* Logo ou autre image */}
-                  <Image
-                    src="/images/new-logo.png"
-                    className="img-responsive"
-                    alt="Logo"
-                    width={151} // Largeur de l'image
-                    height={38} // Hauteur de l'image
-                  />
-                  <br />
-                  {/* Icône de rouage animée */}
-                  <i className="fas fa-cog rotate-icon"></i>
-                  <h1 style={{ marginTop: -10 }}>Page d'Authentification</h1>
-                  <p>Veuillez vous connecter pour accéder au site.</p>
-                  <p>
-                    <strong>Connexion sécurisée</strong>
-                  </p>
-
-                  {/* Formulaire de connexion */}
-                  <form onSubmit={handleLogin}>
-                    <input
-                      type="text"
-                      placeholder="Nom d'utilisateur"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="form-control"
-                      style={{ marginBottom: '10px' }}
-                    />
-                    <input
-                      type="password"
-                      placeholder="Mot de passe"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="form-control"
-                      style={{ marginBottom: '20px' }}
-                    />
-                    <button type="submit" className="btn btn-primary btn-block">
-                      Se connecter
-                    </button>
-                  </form>
-
-                  {/* Affichage des erreurs */}
-                  {error && <p style={{ color: 'red' }}>{error}</p>}
-                  <p>Merci de votre compréhension !</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </body>
-    </html>
-    );
-  }
-  
   
 
   return (    

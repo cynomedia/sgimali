@@ -6,12 +6,12 @@ export function middleware(request: NextRequest) {
   const url = request.url;
 
   // Vérifier la présence du cookie X-Authorized
-  const isAuthorized = request.cookies.get('X-Authorized') === 'true';
+  //const isAuthorized = request.cookies.get('X-Authorized') === 'true';
   const isAuthPage = url.includes('/auth');
   const isMaintenancePage = url.includes('/maintenance');
 
   // Vérifie si le site est en maintenance et si l'utilisateur est autorisé
-  if (maintenanceMode && !isAuthorized && !isAuthPage && !isMaintenancePage) {
+  if (maintenanceMode  && !isAuthPage && !isMaintenancePage) {
     // Redirige l'utilisateur non autorisé vers la page de maintenance
     return NextResponse.redirect(new URL('/maintenance', url));
   }
